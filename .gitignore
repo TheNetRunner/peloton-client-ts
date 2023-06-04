@@ -1,0 +1,15 @@
+# Ignore built ts files
+dist/**/*
+main.ts
+
+# Dependency directory
+node_modules/
+.node_modules/
+
+# Editors
+.idea
+*.iml
+
+# OS metadata
+.DS_Store
+Thumbs.db
