@@ -15,10 +15,13 @@ export class PelotonClient {
 
     constructor(private httpClient: HttpClient) {
         this.userId = "";
+        this.setUserId();
     }
 
     async getLastestWorkout(): Promise<Workout> {
-        const response = await this.makeRequest(`/api/user/${this.userId}/workouts`, {});
+        await this.setUserId();
+
+        const response = await this.httpClient.makeRequest(`/api/user/${this.userId}/workouts`, {});
 
         return response.data[0];
     }
@@ -41,8 +44,8 @@ export class PelotonClient {
 
     async getWorkoutById(workoutId: string): Promise<Workout> {
         await this.setUserId();
-        const response = await this.makeRequest(`/api/workout/${workoutId}`, {});
 
+        const response = await this.httpClient.makeRequest(`/api/workout/${workoutId}`, {});
         return response.data;
     }
 
@@ -65,11 +68,13 @@ export class PelotonClient {
     }
 
     async getWorkouts(page: number = 0, limit: number = 100, joins: string = ""): Promise<WorkoutResponse> {
+        await this.setUserId();
+
         const uri = `/api/user/${this.userId}/workouts`;
 
         const params = { page, limit, joins };
 
-        const response = await this.makeRequest(uri, params);
+        const response = await this.httpClient.makeRequest(uri, params);
         return response.data;
     }
 
@@ -77,14 +82,9 @@ export class PelotonClient {
         const uri = `/api/workout/${workout_id}/performance_graph`;
         const params = {};
 
-        const response = await this.makeRequest(uri, params);
+        const response = await this.httpClient.makeRequest(uri, params);
 
         return response.data;
-    }
-
-    private async makeRequest(uri: string, params: any): Promise<AxiosResponse> {
-        await this.setUserId();
-        return this.httpClient.makeRequest(uri, params);
     }
 
     private async setUserId(): Promise<void> {
