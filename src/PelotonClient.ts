@@ -73,6 +73,15 @@ export class PelotonClient {
         return response.data;
     }
 
+    async getWorkoutMetrics(workout_id: string): Promise<any> {
+        const uri = `/api/workout/${workout_id}/performance_graph`;
+        const params = {};
+
+        const response = await this.makeRequest(uri, params);
+
+        return response.data;
+    }
+
     private async makeRequest(uri: string, params: any): Promise<AxiosResponse> {
         await this.setUserId();
         return this.httpClient.makeRequest(uri, params);
