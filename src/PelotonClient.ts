@@ -1,4 +1,3 @@
-import { AxiosResponse } from "axios";
 import { HttpClient } from "./httpClient";
 import { WorkoutResponse, Workout } from "./models/workout.model";
 
