@@ -1,8 +1,9 @@
-import axios, { Axios, AxiosResponse } from "axios";
+import axios, { Axios, AxiosResponse, AxiosError } from "axios";
 import { wrapper } from "axios-cookiejar-support";
 import { CookieJar } from "tough-cookie";
 
 import { AuthResponse } from "./models/Auth.model";
+import { RequestErrorInterpreter } from "./error/ErrorInterpreter";
 
 const BASE_URL = "https://api.onepeloton.com";
 const loginURL = `/auth/login`;
@@ -10,7 +11,11 @@ const loginURL = `/auth/login`;
 export class HttpClient {
     private httpClient: Axios;
 
-    constructor(private username: string, private password: string) {
+    constructor(
+        private username: string,
+        private password: string,
+        private requestErrorInterpreter = new RequestErrorInterpreter()
+    ) {
         this.httpClient = this.createClient();
     }
 
@@ -19,8 +24,11 @@ export class HttpClient {
         this.createSession();
         const url = `${BASE_URL}${uri}`;
         const reponse = this.httpClient.get(url, { params });
-
-        return reponse;
+        try {
+            return reponse;
+        } catch (err) {
+            throw this.requestErrorInterpreter.interpretRequestError(err as AxiosError);
+        }
     }
 
     async getUserId(): Promise<string> {

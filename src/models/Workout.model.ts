@@ -7,7 +7,7 @@ export interface WorkoutResponse extends ApiResponse {
     total_heart_rate_zone_durations: TotalHeartRateZoneDurations;
 }
 
-interface Workout {
+export interface Workout {
     created_at: number;
     device_type: string;
     end_time: number;
@@ -38,9 +38,29 @@ interface Workout {
     device_time_created_at: number;
     strava_id: string | null;
     fitbit_id: string | null;
-    effort_zones: any; // TODO: Update this with the actual type if available
+    effort_zones: WorkoutEffortZones;
     service_id: string | null;
+    ride?: WorkoutRide;
     is_splits_personal_record: boolean;
+}
+
+export interface WorkoutEffortZones {
+    total_effort_points: number;
+    heart_rate_zone_durations: any;
+}
+
+export interface WorkoutRide {
+    id: string;
+    is_archived: boolean;
+    title: string;
+    scheduled_start_time: number;
+    duration: number;
+    instructor_id: WorkoutRideInstructor;
+}
+
+export interface WorkoutRideInstructor {
+    name: string;
+    image_url: string;
 }
 
 export interface WorkoutSummary {
