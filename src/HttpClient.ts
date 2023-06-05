@@ -2,8 +2,8 @@ import axios, { Axios, AxiosResponse, AxiosError } from "axios";
 import { wrapper } from "axios-cookiejar-support";
 import { CookieJar } from "tough-cookie";
 
-import { AuthResponse } from "./models/Auth.model";
-import { RequestErrorInterpreter } from "./error/ErrorInterpreter";
+import { AuthResponse } from "./models/auth.model";
+import { RequestErrorInterpreter } from "./error/errorInterpreter";
 
 const BASE_URL = "https://api.onepeloton.com";
 const loginURL = `/auth/login`;

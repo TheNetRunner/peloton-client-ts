@@ -1,4 +1,4 @@
-import { PelotonClientError } from "./PelotonClientError";
+import { PelotonClientError } from "./pelotonClientError";
 
 export class ClientError extends PelotonClientError {
     constructor(message: string) {

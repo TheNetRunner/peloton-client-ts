@@ -1,4 +1,4 @@
-import { WorkoutEffortZones } from "./Workout.model";
+import { WorkoutEffortZones } from "./workout.model";
 
 export interface WorkoutMetricsResponse {
     duration: number;

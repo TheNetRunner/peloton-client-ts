@@ -1,4 +1,4 @@
-import { ApiResponse } from "./ApiResponse";
+import { ApiResponse } from "./apiResponse";
 
 export interface WorkoutResponse extends ApiResponse {
     data: Workout[];

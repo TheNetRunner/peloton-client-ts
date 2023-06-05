@@ -1,1 +1,1 @@
-export * from "./PelotonClient";
+export * from "./pelotonClient";

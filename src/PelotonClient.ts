@@ -1,6 +1,6 @@
 import { AxiosResponse } from "axios";
-import { HttpClient } from "./HttpClient";
-import { WorkoutResponse, Workout } from "./models/Workout.model";
+import { HttpClient } from "./httpClient";
+import { WorkoutResponse, Workout } from "./models/workout.model";
 
 export class PelotonClientFactory {
     static create(username: string, password: string): PelotonClient {

@@ -1,7 +1,7 @@
 import { AxiosError } from "axios";
-import { RedirectError } from "./RedirectError";
-import { ClientError } from "./ClientError";
-import { ServerError } from "./ServerError";
+import { RedirectError } from "./redirectError";
+import { ClientError } from "./clientError";
+import { ServerError } from "./serverError";
 
 export class RequestErrorInterpreter {
     interpretRequestError(error: AxiosError): Error {
